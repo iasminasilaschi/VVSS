@@ -20,8 +20,7 @@ public class ServiceTest {
     private Service service;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
         String filenameStudent = "src/main/java/LabAssiAsseProjectV02/fisiere/Studenti.xml";
@@ -35,26 +34,26 @@ public class ServiceTest {
         service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
     }
+
     @Test
-    public void testAddValidStudent(){
-        Student student=new Student("id1","name",1,"email@mail.com");
+    public void testAddValidStudent() {
+        Student student = new Student("id1", "name", 1, "email@mail.com");
         service.addStudent(student);
         Student foundStudent = service.findStudent("id1");
-        Assert.assertEquals(foundStudent.getID(),student.getID());
-        Assert.assertEquals(foundStudent.getNume(),student.getNume());
-        Assert.assertEquals(foundStudent.getGrupa(),student.getGrupa());
-        Assert.assertEquals(foundStudent.getEmail(),student.getEmail());
+        Assert.assertEquals(foundStudent.getID(), student.getID());
+        Assert.assertEquals(foundStudent.getNume(), student.getNume());
+        Assert.assertEquals(foundStudent.getGrupa(), student.getGrupa());
+        Assert.assertEquals(foundStudent.getEmail(), student.getEmail());
     }
 
     @Test
-    public void testAddInvalidStudent(){
-        Student student=new Student("","",-1,"");
+    public void testAddInvalidStudent() {
+        Student student = new Student("", "", -1, "");
 
         try {
             service.addStudent(student);
-        }
-        catch (ValidationException ex){
-            Assert.assertEquals(ex.getMessage(),"Id incorect!");
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Id incorect!");
         }
 
     }
