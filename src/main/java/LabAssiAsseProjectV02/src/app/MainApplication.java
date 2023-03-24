@@ -16,9 +16,9 @@ public class MainApplication {
     public static void main(String[] args) {
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
-        String filenameStudent = "fisiere/Studenti.xml";
-        String filenameTema = "fisiere/Teme.xml";
-        String filenameNota = "fisiere/Note.xml";
+        String filenameStudent = "src/main/java/LabAssiAsseProjectV02/fisiere/Studenti.xml";
+        String filenameTema = "src/main/java/LabAssiAsseProjectV02/fisiere/Teme.xml";
+        String filenameNota = "src/main/java/LabAssiAsseProjectV02/fisiere/Note.xml";
 
         //StudentFileRepository studentFileRepository = new StudentFileRepository(filenameStudent);
         //TemaFileRepository temaFileRepository = new TemaFileRepository(filenameTema);
