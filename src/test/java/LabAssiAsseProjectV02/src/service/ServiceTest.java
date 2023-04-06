@@ -58,4 +58,46 @@ public class ServiceTest {
 
     }
 
+    @Test
+    public void testAddInvalidIDStudent(){
+        Student student = new Student("", "Student name", 3, "mail@mail.com");
+
+        try {
+            service.addStudent(student);
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Id incorect!");
+        }
+    }
+
+    @Test
+    public void testAddInvalidNameStudent(){
+        Student student = new Student("123", "", 3, "mail@mail.com");
+
+        try {
+            service.addStudent(student);
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Nume incorect!");
+        }
+    }
+
+    @Test
+    public void testAddInvalidEmailStudent(){
+        Student student = new Student("123", "Student name", 3, "mail@mail.com");
+        try {
+            service.addStudent(student);
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Email incorect!");
+        }
+    }
+
+    @Test
+    public void testAddInvalidGroupStudent(){
+        Student student = new Student("123", "Student name", -12, "mail@mail.com");
+        try {
+            service.addStudent(student);
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Grupa incorecta!");
+        }
+    }
+
 }
