@@ -1,6 +1,7 @@
 package LabAssiAsseProjectV02.src.service;
 
 import LabAssiAsseProjectV02.src.domain.Student;
+import LabAssiAsseProjectV02.src.domain.Tema;
 import LabAssiAsseProjectV02.src.repository.NotaXMLRepo;
 import LabAssiAsseProjectV02.src.repository.StudentXMLRepo;
 import LabAssiAsseProjectV02.src.repository.TemaXMLRepo;
@@ -98,6 +99,29 @@ public class ServiceTest {
         } catch (ValidationException ex) {
             Assert.assertEquals(ex.getMessage(), "Grupa incorecta!");
         }
+    }
+
+    @Test
+    public void testAddValidTema() {
+        Tema tema = new Tema("1","tralala",3,5);
+
+        service.addTema(tema);
+        Tema foundTema = service.findTema("nr1");
+        Assert.assertEquals(foundTema.getID(), tema.getID());
+        Assert.assertEquals(foundTema.getDescriere(), tema.getDescriere());
+        Assert.assertEquals(foundTema.getDeadline(), tema.getDeadline());
+        Assert.assertEquals(foundTema.getPrimire(), tema.getPrimire());
+    }
+
+    @Test
+    public void testAddInvalidIDTema() {
+        Tema tema = new Tema("","tralala",3,5);
+        try {
+            service.addTema(tema);
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Numar tema invalid!");
+        }
+
     }
 
 }
