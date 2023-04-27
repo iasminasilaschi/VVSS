@@ -103,7 +103,7 @@ public class ServiceTest {
 
     @Test
     public void testAddValidTema() {
-        Tema tema = new Tema("1","tralala",3,5);
+        Tema tema = new Tema("nr1","tralala",3,5);
 
         service.addTema(tema);
         Tema foundTema = service.findTema("nr1");
@@ -124,4 +124,36 @@ public class ServiceTest {
 
     }
 
+    @Test
+    public void testAddInvalidDescriptionTema() {
+        Tema tema = new Tema("nr1","",3,5);
+        try {
+            service.addTema(tema);
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Descriere invalida!");
+        }
+
+    }
+
+    @Test
+    public void testAddInvalidDeadlineTema() {
+        Tema tema = new Tema("nr1","tralala",0,5);
+        try {
+            service.addTema(tema);
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Deadlineul trebuie sa fie intre 1-14.");
+        }
+
+    }
+
+    @Test
+    public void testAddInvalidPrimireTema() {
+        Tema tema = new Tema("nr1","tralala",3,0);
+        try {
+            service.addTema(tema);
+        } catch (ValidationException ex) {
+            Assert.assertEquals(ex.getMessage(), "Saptamana primirii trebuie sa fie intre 1-14.");
+        }
+
+    }
 }
