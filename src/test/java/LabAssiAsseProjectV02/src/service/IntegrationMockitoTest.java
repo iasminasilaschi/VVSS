@@ -7,7 +7,6 @@ import LabAssiAsseProjectV02.src.repository.*;
 import LabAssiAsseProjectV02.src.validation.NotaValidator;
 import LabAssiAsseProjectV02.src.validation.StudentValidator;
 import LabAssiAsseProjectV02.src.validation.TemaValidator;
-import LabAssiAsseProjectV02.src.validation.ValidationException;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -83,7 +82,7 @@ public class IntegrationMockitoTest {
     }
 
     @Test
-    public void testAddStudent() {
+    public void testAddStudentMockito() {
         Student student = new Student("id1", "name", 1, "email@mail.com");
         service.addStudent(student);
         Student foundStudent = service.findStudent("id1");
@@ -94,7 +93,7 @@ public class IntegrationMockitoTest {
     }
 
     @Test
-    public void testAddAssignment() {
+    public void testAddAssignmentMockito() {
         Tema tema = new Tema("nr1", "tralala", 14, 1);
 
         service.addTema(tema);
@@ -106,7 +105,7 @@ public class IntegrationMockitoTest {
     }
 
     @Test
-    public void testAddGrade() {
+    public void testAddGradeMockito() {
         Student student = new Student("id1", "name", 1, "email@mail.com");
         service.addStudent(student);
 
@@ -127,9 +126,9 @@ public class IntegrationMockitoTest {
     }
 
     @Test
-    public void testIntegration() {
-        testAddStudent();
-        testAddAssignment();
+    public void testIntegrationMockito() {
+        testAddStudentMockito();
+        testAddAssignmentMockito();
         Nota nota = new Nota("n1", "id1", "nr1", 8,  LocalDate.of(2020,9,11));
         service.addNota(nota, "Great job!");
         Nota foundNota = service.findNota("n1");
