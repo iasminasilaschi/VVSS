@@ -60,6 +60,7 @@ public class IntegrationMockitoTest {
         Student student = new Student("id1", "name", 1, "email@mail.com");
         Tema tema = new Tema("nr1", "tralala", 14, 1);
         Nota nota = new Nota("n1", "id1", "nr1", 8, LocalDate.of(2020,9,11));
+        Nota notaDelayed=new Nota("n1", "id1", "nr1", 5.5, LocalDate.of(2020,9,11));
 
 
 //        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
@@ -73,10 +74,11 @@ public class IntegrationMockitoTest {
         when(temaXMLRepository.findOne("nr1")).thenReturn(tema);
         doNothing().when(this.temaValidator).validate(tema);
         when(temaXMLRepository.save(tema)).thenReturn(tema);
-        when(notaXMLRepository.findOne("n1")).thenReturn(nota);
+        //when(notaXMLRepository.findOne("n1")).thenReturn(nota);
+        when(notaXMLRepository.findOne("n1")).thenReturn(notaDelayed);
         doNothing().when(notaValidator).validate(nota);
         when(notaXMLRepository.save(nota)).thenReturn(nota);
-
+        when(notaXMLRepository.save(notaDelayed)).thenReturn(notaDelayed);
         service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
     }
